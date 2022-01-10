@@ -4,5 +4,5 @@ export const getData = () => {
 };
 
 export const sendData = (data) => {
-  return localStorage.setItem('todoList', JSON.stringify(data));
+  localStorage.setItem('todoList', JSON.stringify(data));
 };

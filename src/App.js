@@ -6,7 +6,6 @@ import { getData, sendData } from './utils/localStorage';
 
 const App = () => {
   const [todoTasks, setTodoTasks] = useState([]);
-  console.log(todoTasks);
   const data = getData();
   useEffect(() => {
     setTodoTasks(data);
@@ -30,7 +29,9 @@ const App = () => {
   const changeTaskStatus = (taskID) => {
     const updated = todoTasks.map((todo) => {
       if (todo.id === taskID) {
+        /* eslint-disable no-param-reassign */
         todo.done = !todo.done;
+        /* eslint-enable no-param-reassign */
       }
       return todo;
     });
@@ -45,13 +46,13 @@ const App = () => {
         <TaskInput onSubmit={addTask} />
         {data.length
           ? data?.map((todo) => (
-              <TodoRow
-                key={todo.id}
-                task={todo}
-                deleteOne={deleteTask}
-                changeStatus={changeTaskStatus}
-              />
-            ))
+            <TodoRow
+              key={todo.id}
+              task={todo}
+              deleteOne={deleteTask}
+              changeStatus={changeTaskStatus}
+            />
+          ))
           : 'no items added yet'}
       </div>
     </div>
